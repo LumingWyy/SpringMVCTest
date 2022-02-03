@@ -20,6 +20,7 @@
         <fileset id="fileset" name="WebConfiguration" removed="false">
           <dependency>web mvc servlet context</dependency>
           <file>file://$MODULE_DIR$/src/main/java/com/example/config/WebConfiguration.java</file>
+          <file>file://$MODULE_DIR$/src/main/java/com/example/config/MainConfiguration.java</file>
         </fileset>
       </configuration>
     </facet>
