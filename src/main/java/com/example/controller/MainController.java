@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping( "/yyds")
+//@RequestMapping( "/yyds")
 
 public class MainController {
 
@@ -18,9 +18,10 @@ public class MainController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping( "/index")
+    @RequestMapping( "/index?") // * ,? , **
     public String index(Model model) { //not only Model，  Map、ModelMap
         model.addAttribute("name","啊 !");
         return "index";
     }
+
 }
