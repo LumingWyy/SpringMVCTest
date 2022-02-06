@@ -10,7 +10,7 @@ public class MainInitializer extends AbstractAnnotationConfigDispatcherServletIn
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[0]; //DispatcherServlet
+        return new Class[]{WebConfiguration.class}; //DispatcherServlet
     }
 
     @Override
