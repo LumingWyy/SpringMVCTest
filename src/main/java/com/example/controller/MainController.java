@@ -2,7 +2,10 @@ package com.example.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,7 +21,9 @@ public class MainController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping( "/index?") // * ,? , **
+    @RequestMapping( value = "/index",params = "username!=test", method = {RequestMethod.POST, RequestMethod.GET}) // * ,? , **
+    //@PostMapping("/index")
+//    @GetMapping("/index")
     public String index(Model model) { //not only Model，  Map、ModelMap
         model.addAttribute("name","啊 !");
         return "index";
