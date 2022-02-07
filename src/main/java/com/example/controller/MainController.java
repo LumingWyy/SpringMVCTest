@@ -6,6 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 @Controller
 //@RequestMapping( "/yyds")
 
@@ -19,13 +23,27 @@ public class MainController {
 //        return modelAndView;
 //    }
 
-    @RequestMapping( value = "/index",params = "username!=test", method = {RequestMethod.POST, RequestMethod.GET}) // * ,? , **
+    //    @RequestMapping( value = "/index",params = "username!=test", method = {RequestMethod.POST, RequestMethod.GET}) // * ,? , **
     //@PostMapping("/index")
 //    @GetMapping("/index")
-    public String index(User user) {//http://localhost:8080/mvc/index?username=user1&password=123456
-        //model.addAttribute("name","啊 !");
-        System.out.println("request param：" + user);
-        return "index";
-    }
+//    public String index(User user) {//http://localhost:8080/mvc/index?username=user1&password=123456
+//        //model.addAttribute("name","啊 !");
+//        System.out.println("request param：" + user);
+//        return "index";
+//    }
+//    @RequestMapping(value = "/index")
+//    public ModelAndView index(HttpServletResponse response,
+//                              @CookieValue(value = "test", required = false) String test) {
+//        System.out.println("cookie value：" + test);
+//        response.addCookie(new Cookie("test", "lbwnb"));
+//        return new ModelAndView("index");
+//    }
 
+    @RequestMapping(value = "/index")
+    public ModelAndView index(@SessionAttribute(value = "test", required = false) String test,
+                              HttpSession session){
+        session.setAttribute("test", "xxxx");
+        System.out.println(test);
+        return new ModelAndView("index");
+    }
 }
