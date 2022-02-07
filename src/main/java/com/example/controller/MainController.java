@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,9 @@ public class MainController {
     @RequestMapping( value = "/index",params = "username!=test", method = {RequestMethod.POST, RequestMethod.GET}) // * ,? , **
     //@PostMapping("/index")
 //    @GetMapping("/index")
-    public String index(@RequestParam("username") String username) { //not only Model，  Map、ModelMap
+    public String index(User user) {//http://localhost:8080/mvc/index?username=user1&password=123456
         //model.addAttribute("name","啊 !");
-        System.out.println("UserName" + username);
+        System.out.println("request param：" + user);
         return "index";
     }
 
