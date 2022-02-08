@@ -49,15 +49,28 @@ public class MainController {
 //        return new ModelAndView("index");
 //    }
 
-//http://localhost:8080/mvc/index/123456
-    @RequestMapping("/index/{str}")
-    public ModelAndView index(@PathVariable("str") String text){
-        System.out.println(text);
-        return new ModelAndView("index");
+    //RestFul
+    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
+    public String get(@PathVariable("id") String text){
+        System.out.println("get user："+text);
+        return "index";
     }
 
-    @RequestMapping("/home")
-    public String home(){
-        return "home";
+    @RequestMapping(value = "/index", method = RequestMethod.POST)
+    public String post(String username){
+        System.out.println("add user："+username);
+        return "index";
+    }
+
+    @RequestMapping(value = "/index/{id}", method = RequestMethod.DELETE)
+    public String delete(@PathVariable("id") String text){
+        System.out.println("delete user："+text);
+        return "index";
+    }
+
+    @RequestMapping(value = "/index", method = RequestMethod.PUT)
+    public String put(String username){
+        System.out.println("modify user："+username);
+        return "index";
     }
 }
