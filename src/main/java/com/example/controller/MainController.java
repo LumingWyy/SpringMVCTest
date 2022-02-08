@@ -49,7 +49,7 @@ public class MainController {
 
     @RequestMapping("/index")
     public String index(){
-        return "redirect:home";
+        return "forward:home";
     }
 
     @RequestMapping("/home")
