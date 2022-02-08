@@ -1,11 +1,13 @@
 package com.example.controller;
 
+import com.example.entity.TestBean;
 import com.example.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -46,10 +48,13 @@ public class MainController {
 //        System.out.println(test);
 //        return new ModelAndView("index");
 //    }
+    @Resource
+    TestBean bean;
 
     @RequestMapping("/index")
-    public String index(){
-        return "forward:home";
+    public ModelAndView index(){
+        System.out.println(bean);
+        return new ModelAndView("index");
     }
 
     @RequestMapping("/home")
