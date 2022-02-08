@@ -48,12 +48,11 @@ public class MainController {
 //        System.out.println(test);
 //        return new ModelAndView("index");
 //    }
-    @Resource
-    TestBean bean;
 
-    @RequestMapping("/index")
-    public ModelAndView index(){
-        System.out.println(bean);
+//http://localhost:8080/mvc/index/123456
+    @RequestMapping("/index/{str}")
+    public ModelAndView index(@PathVariable("str") String text){
+        System.out.println(text);
         return new ModelAndView("index");
     }
 
