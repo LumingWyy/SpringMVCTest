@@ -39,11 +39,21 @@ public class MainController {
 //        return new ModelAndView("index");
 //    }
 
-    @RequestMapping(value = "/index")
-    public ModelAndView index(@SessionAttribute(value = "test", required = false) String test,
-                              HttpSession session){
-        session.setAttribute("test", "xxxx");
-        System.out.println(test);
-        return new ModelAndView("index");
+//    @RequestMapping(value = "/index")
+//    public ModelAndView index(@SessionAttribute(value = "test", required = false) String test,
+//                              HttpSession session){
+//        session.setAttribute("test", "xxxx1111");
+//        System.out.println(test);
+//        return new ModelAndView("index");
+//    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "redirect:home";
+    }
+
+    @RequestMapping("/home")
+    public String home(){
+        return "home";
     }
 }
