@@ -60,7 +60,6 @@ public class WebConfiguration implements WebMvcConfigurer {
     }
 
     @Bean
-    @SessionScope
     public TestBean testBean(){
         return new TestBean();
     }
