@@ -2,6 +2,7 @@ package com.example.config;
 
 import com.example.entity.TestBean;
 import com.example.interceptor.MainInterceptor;
+import com.example.interceptor.SubInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -64,8 +65,14 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        //interceptor NO.1
         registry.addInterceptor(new MainInterceptor())
                 .addPathPatterns("/**")    //Interceptor path
                 .excludePathPatterns("/home");
+
+        //interceptor NO.2
+        registry.addInterceptor(new SubInterceptor())
+                .addPathPatterns("/**");
+
     }
 }

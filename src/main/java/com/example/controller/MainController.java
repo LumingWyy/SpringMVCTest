@@ -49,7 +49,6 @@ public class MainController {
 //        return new ModelAndView("index");
 //    }
 
-    //RestFul
     @RequestMapping(value = "/index")
     public String get(){
         System.out.println("im controller");
