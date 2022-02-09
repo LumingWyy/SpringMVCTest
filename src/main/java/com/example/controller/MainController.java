@@ -52,6 +52,7 @@ public class MainController {
     @RequestMapping(value = "/index")
     public String get(){
         System.out.println("im controller");
+        if(true) throw new RuntimeException("im exception");
         return "index";
     }
     @RequestMapping(value = "/home")

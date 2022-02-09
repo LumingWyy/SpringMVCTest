@@ -2,11 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-<!--    <script th:src="@{/static/test.js}"></script>-->
+    <title>Error !</title>
 </head>
 <body>
-HelloWorld!
-<div></div>
+    <div>Server Error!</div>
+    <div th:text="${e}"></div>
 </body>
 </html>
