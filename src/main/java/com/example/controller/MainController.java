@@ -50,27 +50,14 @@ public class MainController {
 //    }
 
     //RestFul
-    @RequestMapping(value = "/index/{id}", method = RequestMethod.GET)
-    public String get(@PathVariable("id") String text){
-        System.out.println("get user："+text);
+    @RequestMapping(value = "/index")
+    public String get(){
+        System.out.println("im controller");
         return "index";
     }
-
-    @RequestMapping(value = "/index", method = RequestMethod.POST)
-    public String post(String username){
-        System.out.println("add user："+username);
-        return "index";
-    }
-
-    @RequestMapping(value = "/index/{id}", method = RequestMethod.DELETE)
-    public String delete(@PathVariable("id") String text){
-        System.out.println("delete user："+text);
-        return "index";
-    }
-
-    @RequestMapping(value = "/index", method = RequestMethod.PUT)
-    public String put(String username){
-        System.out.println("modify user："+username);
-        return "index";
+    @RequestMapping(value = "/home")
+    public String home(){
+        System.out.println("im home");
+        return "home";
     }
 }

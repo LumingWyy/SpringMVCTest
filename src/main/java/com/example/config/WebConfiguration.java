@@ -1,16 +1,14 @@
 package com.example.config;
 
 import com.example.entity.TestBean;
+import com.example.interceptor.MainInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
@@ -40,27 +38,34 @@ public class WebConfiguration implements WebMvcConfigurer {
         return resolver;
     }
 
-    //配置模板引擎Bean
+
     @Bean
     public SpringTemplateEngine springTemplateEngine(@Autowired ITemplateResolver resolver){
         SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.setTemplateResolver(resolver);   //模板解析器，默认即可
+        engine.setTemplateResolver(resolver);
         return engine;
     }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();   //开启默认的Servlet
+        configurer.enable();   //Servlet
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
-        //配置静态资源的访问路径
+
     }
 
     @Bean
     public TestBean testBean(){
         return new TestBean();
+    }
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new MainInterceptor())
+                .addPathPatterns("/**")    //Interceptor path
+                .excludePathPatterns("/home");
     }
 }
