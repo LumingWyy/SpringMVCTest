@@ -2,12 +2,13 @@ package com.example.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
+import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import java.io.File;
-import java.io.IOException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 
 @Controller
 //@RequestMapping( "/yyds")
@@ -82,5 +83,17 @@ public class MainController {
         file.transferTo(fileObj);
         System.out.println("save path："+fileObj.getAbsolutePath());
         return "upload success！";
+    }
+
+    @RequestMapping(value = "/download", method = RequestMethod.GET)
+    @ResponseBody
+    public void download(HttpServletResponse response){
+        response.setContentType("multipart/form-data");
+        try(OutputStream stream = response.getOutputStream();
+            InputStream inputStream = new FileInputStream("test.html")){
+            IOUtils.copy(inputStream, stream);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
