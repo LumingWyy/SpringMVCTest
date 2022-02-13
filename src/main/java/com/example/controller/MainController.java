@@ -1,16 +1,9 @@
 package com.example.controller;
 
-import com.example.entity.TestBean;
+import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Controller
 //@RequestMapping( "/yyds")
@@ -49,15 +42,32 @@ public class MainController {
 //        return new ModelAndView("index");
 //    }
 
+//    @RequestMapping(value = "/index")
+//    public String get(){
+//        System.out.println("im controller");
+//        if(true) throw new RuntimeException("im exception");
+//        return "index";
+//    }
+    @RequestMapping(value = "/data", produces = "application/json")
+    @ResponseBody
+    public User home(){
+        User user =new User();
+        user.setUsername("levis");
+        user.setAge(18);
+//        user.setPassword("123456");
+        return user;
+    }
+
     @RequestMapping(value = "/index")
     public String get(){
-        System.out.println("im controller");
-        if(true) throw new RuntimeException("im exception");
         return "index";
     }
-    @RequestMapping(value = "/home")
-    public String home(){
-        System.out.println("im home");
-        return "home";
+
+
+    @RequestMapping("/submit")
+    @ResponseBody
+    public String submit(@RequestBody User user){
+        System.out.println("foward data："+ user);
+        return "{\"success\": true}";
     }
 }
