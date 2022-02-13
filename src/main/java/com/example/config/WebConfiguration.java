@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.*;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -76,6 +77,13 @@ public class WebConfiguration implements WebMvcConfigurer {
         return new TestBean();
     }
 
+    @Bean("multipartResolver")
+    public CommonsMultipartResolver commonsMultipartResolver(){
+        CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+        resolver.setMaxUploadSize(1024 * 1024 * 10);
+        resolver.setDefaultEncoding("UTF-8");
+        return resolver;
+    }
 //    @Override
 //    public void addInterceptors(InterceptorRegistry registry) {
 //        //interceptor NO.1

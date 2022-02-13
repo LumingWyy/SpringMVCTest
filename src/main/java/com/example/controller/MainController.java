@@ -4,6 +4,10 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import java.io.File;
+import java.io.IOException;
 
 @Controller
 //@RequestMapping( "/yyds")
@@ -69,5 +73,14 @@ public class MainController {
     public String submit(@RequestBody User user){
         System.out.println("foward data："+ user);
         return "{\"success\": true}";
+    }
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @ResponseBody
+    public String upload(@RequestParam CommonsMultipartFile file) throws IOException {
+        File fileObj = new File("test.html");
+        file.transferTo(fileObj);
+        System.out.println("save path："+fileObj.getAbsolutePath());
+        return "upload success！";
     }
 }
