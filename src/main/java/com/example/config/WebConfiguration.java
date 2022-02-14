@@ -65,12 +65,12 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     }
 
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
-        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
-        converters.add(converter);
-    }
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        FastJsonHttpMessageConverter converter = new FastJsonHttpMessageConverter();
+//        converter.setSupportedMediaTypes(Collections.singletonList(MediaType.APPLICATION_JSON));
+//        converters.add(converter);
+//    }
 
     @Bean
     public TestBean testBean(){

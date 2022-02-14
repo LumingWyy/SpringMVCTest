@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
 
 @Controller
@@ -63,10 +64,10 @@ public class MainController {
         return user;
     }
 
-    @RequestMapping(value = "/index")
-    public String get(){
-        return "index";
-    }
+//    @RequestMapping(value = "/index")
+//    public String get(){
+//        return "index";
+//    }
 
 
     @RequestMapping("/submit")
@@ -75,6 +76,22 @@ public class MainController {
         System.out.println("foward data："+ user);
         return "{\"success\": true}";
     }
+    @RequestMapping("/index")
+    public String index(HttpSession session){
+        session.setAttribute("login", true);   //这里就正常访问一下index表示登陆
+        return "csrf";
+
+    }
+
+    @RequestMapping(value = "/pay", method = RequestMethod.POST, produces = "text/html;charset=utf-8")
+    @ResponseBody
+    public String pay(String account,
+                      int amount,
+                      @SessionAttribute("login") Boolean isLogin){
+        if (isLogin) return "successful transfer\n $"+amount+" to ："+account;
+        else return "fail！";
+    }
+
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     @ResponseBody
